@@ -1,0 +1,61 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity$PlaceholderFragment">
+
+    <TextView
+        android:id="@+id/TWRPXperiaDescription"
+        android:layout_centerHorizontal="true"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="16.5dp"/>
+    <Button
+        android:id="@+id/backupButton"
+        android:text="Backup FOTAKernel Image"
+        android:layout_below="@id/TWRPXperiaDescription"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="backupFota"/>
+
+    <Button
+        android:id="@+id/downloadButton"
+        android:text="Download TWRP image"
+        android:layout_below="@id/backupButton"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="downloadTWRP" />
+
+    <Button
+        android:id="@+id/flashButton"
+        android:text="Flash downloaded TWRP image"
+        android:layout_below="@id/downloadButton"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="flashTWRP"/>
+
+    <Button
+        android:id="@+id/restoreButton"
+        android:text="Restore FOTAKernel backup"
+        android:layout_below="@id/flashButton"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="restoreFOTA"/>
+
+</RelativeLayout>
+</ScrollView>

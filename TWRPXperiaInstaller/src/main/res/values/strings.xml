@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TWRPXperia Installer</string>
+    <string name="hello_world">
+        TWRP Recovery Installer for Xperia
+        \n\n
+        This app downloads latest TWRP image for your phone
+        and flashes it to the FOTAKernel partition.
+        \n\n
+        All custom ROMs (FXP, AOKP, CM, PAC, AOSPA etc)
+        support the extract_elf_ramdisk method in which
+        the recovery present inside the FOTAKernel partition
+        is used. This recovery will work regardless of if the
+        recovery in kernel is working or not.
+        \n\n
+        NOTE: The recovery.img files are hosted on goo.im so when
+        downloading, first just an html page is downloaded. Open the
+        page, and come back to the app and press the download button
+        for the real download of recovery to begin. (~10mb size)
+    </string>
+    <string name="action_settings">Settings</string>
+
+</resources>
