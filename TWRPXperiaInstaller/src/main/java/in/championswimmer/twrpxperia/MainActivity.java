@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,8 @@ public class MainActivity extends Activity {
     public static String DEVICE_NAME;
     public static String TAG = "TWRPXperia";
     public static String STORAGE_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/TWRPXperia/";
+
+    public boolean success;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,13 +80,22 @@ public class MainActivity extends Activity {
             return rootView;
         }
     }
+    public void showSuccess (boolean b, String message) {
+        Toast t = Toast.makeText(getApplicationContext(), "Operation not completed !!", Toast.LENGTH_LONG);
+        if (b) {
+            t.setText(message);
+        }
+        t.show();
+    }
+
 
     public void backupFota(View v) {
-        boolean success = true;
+        success = true;
         String[] cmds = {
                 "mkdir -p /sdcard/TWRPXperia",
                 "dd if=/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel " +
-                        "of="+STORAGE_DIRECTORY+"fotakernel.img"};
+                        "of=/sdcard/TWRPXperia/fotakernel.img"};
+        Log.d(TAG, cmds[1]);
         Process p = null;
         try {
             p = Runtime.getRuntime().exec("su");
@@ -107,12 +119,14 @@ public class MainActivity extends Activity {
             e.printStackTrace();
             success = false;
         }
-
-        if (success) {
-            Toast t = Toast.makeText(getApplicationContext(), "bollocks", Toast.LENGTH_LONG);
-            t.setText("FOTAKernel image backed up to \n "+STORAGE_DIRECTORY+"fotakernel.img");
-            t.show();
-        }
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            public void run() {
+                File check = new File(STORAGE_DIRECTORY+"fotakernel.img");
+                if (((check.length()/1024)/1024)<5) success = false;
+                showSuccess(success, "FOTAKernel backed up to "+STORAGE_DIRECTORY+"fotakernel.img");
+            }
+        }, 3000);
 
     }
 
@@ -140,7 +154,7 @@ public class MainActivity extends Activity {
     }
 
     public void flashTWRP (View v) {
-        boolean success = true;
+        success = true;
         File twrp = new File(STORAGE_DIRECTORY+"recovery.img");
         if (!twrp.exists()) {
             success = false;
@@ -158,7 +172,7 @@ public class MainActivity extends Activity {
 
         }
         String[] cmds = {
-                "dd if="+twrp.getPath()+
+                "dd if=/sdcard/TWRPXperia/recovery.img" +
                         " of=/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"};
         Process p = null;
         try {
@@ -184,11 +198,12 @@ public class MainActivity extends Activity {
             success = false;
         }
 
-        if (success) {
-            Toast t = Toast.makeText(getApplicationContext(), "bollocks", Toast.LENGTH_LONG);
-            t.setText("recovery image has been flashed to FOTAKernel");
-            t.show();
-        }
+        Handler mHandler = new Handler();
+        mHandler.postDelayed(new Runnable() {
+            public void run() {
+                showSuccess(success, "recovery image has been flashed to FOTAKernel");
+            }
+        }, 3000);
 
     }
 
