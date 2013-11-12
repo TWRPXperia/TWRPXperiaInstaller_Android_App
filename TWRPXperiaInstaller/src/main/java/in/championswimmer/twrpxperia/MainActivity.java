@@ -1,9 +1,13 @@
 package in.championswimmer.twrpxperia;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.app.DownloadManager;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +29,7 @@ public class MainActivity extends Activity {
     public static String FOTA_PATH = "fotakernel";
     public static String TAG = "TWRPXperia";
     public static String STORAGE_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/TWRPXperia/";
+    public boolean supported = false;
 
     public boolean success;
 
@@ -39,7 +44,7 @@ public class MainActivity extends Activity {
                     .commit();
         }
 
-        DEVICE_NAME = Build.DEVICE;
+        DEVICE_NAME = setDEVICE_NAME(Build.DEVICE);
         if ((DEVICE_NAME == "tsubasa") || (DEVICE_NAME == "mint")) {
             FOTA_PATH="FOTAKernel";
         }
@@ -136,7 +141,7 @@ public class MainActivity extends Activity {
 
     public void downloadTWRP (View v) {
 
-        String url = "http://goo.im/devs/kxp/twrp/" + DEVICE_NAME + "/recovery.img";
+        String url = "http://android.championswimmer.in/twrp/" + DEVICE_NAME + "/recovery.img";
         DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
         request.setDescription("TWRP recovery for "+DEVICE_NAME);
         request.setTitle("recovery.img");
@@ -253,6 +258,34 @@ public class MainActivity extends Activity {
             t.setText("Backup image has been flashed back to FOTAKernel partition");
             t.show();
         }
+
+    }
+
+    public String setDEVICE_NAME (String deviceName) {
+
+        String[] deviceProp = getResources().getStringArray(R.array.supported_device_prop);
+        String[] deviceCode = getResources().getStringArray(R.array.supported_device_codename);
+        int i;
+        for (i = 0; i < deviceCode.length; i++) {
+            if (deviceProp[i].equalsIgnoreCase(deviceName)) {
+                deviceName = deviceCode[i];
+                supported = true;
+                break;
+            }
+        }
+        if (!supported) {
+            new AlertDialog.Builder(this)
+                    .setTitle("NOT SUPPORTED")
+                    .setMessage("Your device "+ deviceName +" is not supported.\n" +
+                            "Please contact developer")
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    })
+                    .show();
+        }
+        return deviceName;
 
     }
 

@@ -13,12 +13,54 @@
         the recovery present inside the FOTAKernel partition
         is used. This recovery will work regardless of if the
         recovery in kernel is working or not.
-        \n\n
-        NOTE: The recovery.img files are hosted on goo.im so when
-        downloading, first just an html page is downloaded. Open the
-        page, and come back to the app and press the download button
-        for the real download of recovery to begin. (~10mb size)
+
     </string>
     <string name="action_settings">Settings</string>
+
+    <string-array name="supported_device_prop">
+        <item>mint</item>
+        <item>LT30i</item>
+        <item>LT30p</item>
+        <item>tsubasa</item>
+        <item>LT25i</item>
+        <item>yuga</item>
+        <item>C6602</item>
+        <item>C6603</item>
+        <item>C6606</item>
+        <item>odin</item>
+        <item>C5602</item>
+        <item>C5603</item>
+        <item>C5606</item>
+        <item>pollux</item>
+        <item>SGP321</item>
+        <item>SGP322</item>
+        <item>pollux_windy</item>
+        <item>SGP311</item>
+        <item>SGP312</item>
+    </string-array>
+
+
+    <string-array name="supported_device_codename">
+        <item>mint</item>
+        <item>mint</item>
+        <item>mint</item>
+        <item>tsubasa</item>
+        <item>tsubasa</item>
+        <item>yuga</item>
+        <item>yuga</item>
+        <item>yuga</item>
+        <item>yuga</item>
+        <item>odin</item>
+        <item>odin</item>
+        <item>odin</item>
+        <item>odin</item>
+        <item>pollux</item>
+        <item>pollux</item>
+        <item>pollux</item>
+        <item>pollux_windy</item>
+        <item>pollux_windy</item>
+        <item>pollux_windy</item>
+    </string-array>
+
 
 </resources>
