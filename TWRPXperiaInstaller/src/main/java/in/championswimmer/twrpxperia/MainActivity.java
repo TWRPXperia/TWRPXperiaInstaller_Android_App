@@ -22,6 +22,7 @@ import java.io.IOException;
 public class MainActivity extends Activity {
 
     public static String DEVICE_NAME;
+    public static String FOTA_PATH = "fotakernel";
     public static String TAG = "TWRPXperia";
     public static String STORAGE_DIRECTORY = Environment.getExternalStorageDirectory().getPath() + "/TWRPXperia/";
 
@@ -39,6 +40,9 @@ public class MainActivity extends Activity {
         }
 
         DEVICE_NAME = Build.DEVICE;
+        if ((DEVICE_NAME == "tsubasa") || (DEVICE_NAME == "mint")) {
+            FOTA_PATH="FOTAKernel";
+        }
         File dir = new File(STORAGE_DIRECTORY+"valid.txt");
         if(!dir.exists()) dir.mkdirs();
         Log.d(TAG, "device name : " + DEVICE_NAME);
@@ -93,7 +97,7 @@ public class MainActivity extends Activity {
         success = true;
         String[] cmds = {
                 "mkdir -p /sdcard/TWRPXperia",
-                "dd if=/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel " +
+                "dd if=/dev/block/platform/msm_sdcc.1/by-name/" + FOTA_PATH +" " +
                         "of=/sdcard/TWRPXperia/fotakernel.img"};
         Log.d(TAG, cmds[1]);
         Process p = null;
@@ -173,7 +177,7 @@ public class MainActivity extends Activity {
         }
         String[] cmds = {
                 "dd if=/sdcard/TWRPXperia/recovery.img" +
-                        " of=/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"};
+                        " of=/dev/block/platform/msm_sdcc.1/by-name/" + FOTA_PATH +" "};
         Process p = null;
         try {
             p = Runtime.getRuntime().exec("su");
@@ -219,7 +223,7 @@ public class MainActivity extends Activity {
         }
         String[] cmds = {
                 "dd if="+fota.getPath()+
-                        " of=/dev/block/platform/msm_sdcc.1/by-name/FOTAKernel"};
+                        " of=/dev/block/platform/msm_sdcc.1/by-name/" + FOTA_PATH +" "};
         Process p = null;
         try {
             p = Runtime.getRuntime().exec("su");
