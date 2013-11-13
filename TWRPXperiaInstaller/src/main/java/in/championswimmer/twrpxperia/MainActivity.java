@@ -45,9 +45,6 @@ public class MainActivity extends Activity {
         }
 
         DEVICE_NAME = setDEVICE_NAME(Build.DEVICE);
-        if ((DEVICE_NAME == "tsubasa") || (DEVICE_NAME == "mint")) {
-            FOTA_PATH="FOTAKernel";
-        }
         File dir = new File(STORAGE_DIRECTORY+"valid.txt");
         if(!dir.exists()) dir.mkdirs();
         Log.d(TAG, "device name : " + DEVICE_NAME);
@@ -265,10 +262,12 @@ public class MainActivity extends Activity {
 
         String[] deviceProp = getResources().getStringArray(R.array.supported_device_prop);
         String[] deviceCode = getResources().getStringArray(R.array.supported_device_codename);
+        String[] fotaPath   = getResources().getStringArray(R.array.fota_path);
         int i;
         for (i = 0; i < deviceCode.length; i++) {
             if (deviceProp[i].equalsIgnoreCase(deviceName)) {
                 deviceName = deviceCode[i];
+                FOTA_PATH = fotaPath[i];
                 supported = true;
                 break;
             }

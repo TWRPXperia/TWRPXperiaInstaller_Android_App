@@ -62,5 +62,27 @@
         <item>pollux_windy</item>
     </string-array>
 
+    <string-array name="fota_path">
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+    </string-array>
+
 
 </resources>
