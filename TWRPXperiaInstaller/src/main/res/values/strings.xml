@@ -37,6 +37,10 @@
         <item>pollux_windy</item>
         <item>SGP311</item>
         <item>SGP312</item>
+        <item>dogo</item>
+        <item>C5502</item>
+        <item>C5503</item>
+        <item>C5506</item>
     </string-array>
 
 
@@ -60,6 +64,10 @@
         <item>pollux_windy</item>
         <item>pollux_windy</item>
         <item>pollux_windy</item>
+        <item>dogo</item>
+        <item>dogo</item>
+        <item>dogo</item>
+        <item>dogo</item>
     </string-array>
 
     <string-array name="fota_path">
@@ -68,6 +76,10 @@
         <item>FOTAKernel</item>
         <item>FOTAKernel</item>
         <item>FOTAKernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
+        <item>fotakernel</item>
         <item>fotakernel</item>
         <item>fotakernel</item>
         <item>fotakernel</item>
