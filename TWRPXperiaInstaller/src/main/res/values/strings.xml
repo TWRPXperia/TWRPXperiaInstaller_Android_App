@@ -41,6 +41,13 @@
         <item>C5502</item>
         <item>C5503</item>
         <item>C5506</item>
+        <item>huashan</item>
+        <item>C5302</item>
+        <item>C5303</item>
+        <item>C5306</item>
+        <item>M35h</item>
+        <item>M35c</item>
+        <item>M35t</item>
     </string-array>
 
 
@@ -68,9 +75,23 @@
         <item>dogo</item>
         <item>dogo</item>
         <item>dogo</item>
+        <item>huashan</item>
+        <item>huashan</item>
+        <item>huashan</item>
+        <item>huashan</item>
+        <item>huashan</item>
+        <item>huashan</item>
+        <item>huashan</item>
     </string-array>
 
     <string-array name="fota_path">
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
+        <item>FOTAKernel</item>
         <item>FOTAKernel</item>
         <item>FOTAKernel</item>
         <item>FOTAKernel</item>
