@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="in.championswimmer.twrpxperia"
-    android:versionCode="025"
-    android:versionName="0.2.5" >
+    android:versionCode="030"
+    android:versionName="0.3.0">
 
-    <uses-sdk
+<uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="18" />
     <uses-permission android:name="android.permission.INTERNET" />

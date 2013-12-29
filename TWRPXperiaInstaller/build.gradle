@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.android.tools.build:gradle:0.7.+'
     }
 }
 apply plugin: 'android'
@@ -13,14 +13,34 @@ repositories {
 }
 
 android {
+    signingConfigs {
+        release {
+            storeFile file('/home/championswimmer/android-app-keystore/championswimmer')
+            storePassword '*********'
+            keyPassword '*********'
+            keyAlias 'playstore'
+        }
+    }
     compileSdkVersion 18
-    buildToolsVersion "18.1.0"
-
+    buildToolsVersion '18.1.0'
     defaultConfig {
         minSdkVersion 14
         targetSdkVersion 18
     }
+    buildTypes {
+        debug {
+            zipAlign true
+            runProguard false
+            jniDebugBuild true
+            debuggable true
+        }
+        release {
+            zipAlign true
+            signingConfig signingConfigs.release
+            jniDebugBuild false
+            debuggable false
+        }
+    }
 }
 
-dependencies {
-}
+dependencies {}

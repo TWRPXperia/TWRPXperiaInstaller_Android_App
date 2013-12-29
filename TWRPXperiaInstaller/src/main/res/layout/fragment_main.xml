@@ -57,5 +57,14 @@
         android:layout_width="wrap_content"
         android:onClick="restoreFOTA"/>
 
+    <Button
+        android:id="@+id/emptyButton"
+        android:text="Empty FOTAKernel Partition"
+        android:layout_below="@id/restoreButton"
+        android:layout_centerHorizontal="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:onClick="emptyFOTA" />
+
 </RelativeLayout>
 </ScrollView>

@@ -2,8 +2,6 @@ package in.championswimmer.twrpxperia;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.app.DownloadManager;
 import android.app.Fragment;
 import android.content.Context;
@@ -253,6 +251,44 @@ public class MainActivity extends Activity {
         if (success) {
             Toast t = Toast.makeText(getApplicationContext(), "bollocks", Toast.LENGTH_LONG);
             t.setText("Backup image has been flashed back to FOTAKernel partition");
+            t.show();
+        }
+
+    }
+
+    public void emptyFOTA(View v) {
+        boolean success = true;
+        File fota = new File("/dev/zero");
+        String[] cmds = {
+                "dd if=" + fota.getPath() +
+                        " of=/dev/block/platform/msm_sdcc.1/by-name/" + FOTA_PATH + " "};
+        Process p = null;
+        try {
+            p = Runtime.getRuntime().exec("su");
+        } catch (IOException e) {
+            success = false;
+            e.printStackTrace();
+        }
+        DataOutputStream os = new DataOutputStream(p.getOutputStream());
+        for (String tmpCmd : cmds) {
+            try {
+                os.writeBytes(tmpCmd + "\n");
+            } catch (IOException e) {
+                success = false;
+                e.printStackTrace();
+            }
+        }
+        try {
+            os.writeBytes("exit\n");
+            os.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+            success = false;
+        }
+
+        if (success) {
+            Toast t = Toast.makeText(getApplicationContext(), "bollocks", Toast.LENGTH_LONG);
+            t.setText("FOTAKernel partition has been emptied");
             t.show();
         }
 
